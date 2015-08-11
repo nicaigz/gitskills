@@ -37,3 +37,61 @@ commitencoding = GB2312
 $ git config --global core.editor "notepad"
 
 其中 notepad 可以替换为更好用的 wordpad、notepad++ 等（不过它们在命令行里无法直接访问，得先设置 PATH 变量）。
+
+
+
+
+
+
+
+打开Git Bash
+
+ 
+
+进入目录：$ cd /etc
+
+ 
+
+1. 编辑 gitconfig 文件：$ vi gitconfig
+
+      文件中增加内容
+
+[gui]  
+encoding = utf-8 #代码库统一使用utf-8  
+[i18n]  
+commitencoding = GB2312 #log编码，window下默认gb2312,声明后发到服务器才不会乱码  
+[svn]  
+pathnameencoding = GB2312 #支持中文路径  
+ 
+
+2. 编辑 git-completion.bash 文件：$ vi git-completion.bash
+
+    最下面添加
+
+alias ls='ls --show-control-chars --color=auto' #ls能够正常显示中文  
+ 
+
+3. 编辑 inputrc 文件：$ vi inputrc
+
+    修改 output-meta 和 convert-meta 属性值
+
+set output-meta on #bash中可以正常输入中文  
+set convert-meta off  
+ 
+
+4. 编辑 profile 文件：$ vi profile
+
+    最下面添加
+
+export LESSHARSET=utf-8  
+ 
+
+5. 重新编译配置文件，使文件生效
+
+    $ source git-completion.bash
+
+    $ source inputrc
+
+    $ source profile
+
+千里之行，始于足下。改变现在，就是改变未来。改变未来，从现在开始。
